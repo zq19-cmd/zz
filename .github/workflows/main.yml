@@ -20,6 +20,12 @@ jobs:
           distribution: 'temurin'
           cache: gradle
 
+      # --- 新增安装 Python 3.10 ---
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
       - name: Accept Android SDK Licenses
         run: yes | sdkmanager --licenses || true
 
@@ -37,5 +43,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: MyBox-64bit-APKs
-          # 使用通配符匹配所有生成的 debug APK，防止路径层级错误
           path: app/build/outputs/apk/**/debug/*.apk
